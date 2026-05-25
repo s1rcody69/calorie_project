@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -73,15 +74,9 @@ WSGI_APPLICATION = 'calorie_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'calorie_db',
-        'USER': 'postgres',
-        'PASSWORD': 'University38@1234',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default' : dj_database_url.parse('postgresql://calorie_project_0f2w_user:Yhv1tzmeOo0SNkxfQiJAFoQHNV8duIXq@dpg-d8a9sm1kh4rs73eb2kp0-a.oregon-postgres.render.com/calorie_project_0f2w')
 }
 
 
@@ -120,3 +115,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+TIME_ZONE = 'Africa/Nairobi'
