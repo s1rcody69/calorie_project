@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 import dj_database_url
 
@@ -26,7 +27,12 @@ SECRET_KEY = 'django-insecure-m^%s@22e8!4zeo5=w-o_7ckuw=fgn)d9r0&g20+4eh_*fys!%9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Updated to automatically allow local environments and your Render deployment domain
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'calorie-project-739n.onrender.com']
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
@@ -74,7 +80,6 @@ WSGI_APPLICATION = 'calorie_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-
 DATABASES = {
     'default' : dj_database_url.parse('postgresql://calorie_project_0f2w_user:Yhv1tzmeOo0SNkxfQiJAFoQHNV8duIXq@dpg-d8a9sm1kh4rs73eb2kp0-a.oregon-postgres.render.com/calorie_project_0f2w')
 }
@@ -104,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
@@ -117,4 +122,3 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-TIME_ZONE = 'Africa/Nairobi'
